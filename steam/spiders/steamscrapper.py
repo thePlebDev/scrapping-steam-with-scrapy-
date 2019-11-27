@@ -7,6 +7,8 @@ class SteamscrapperSpider(scrapy.Spider):
 	name = 'steamscrapper'
 	allowed_domains = ['store.steampowered.com']
 	start_urls = ["https://store.steampowered.com/games/#p=0&tab=NewReleases","https://store.steampowered.com/games/#p=1&tab=NewReleases"]
+
+	custom_settings = {'FEED_URI': "scrapper_%(time)s.json", 'FEED_FORMAT': 'json'}
 	def parse(self, response):
 		print("processing:" + response.url)
 		product_name = response.css('.tab_item_name::text').extract()
